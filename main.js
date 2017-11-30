@@ -44,9 +44,35 @@ var Plate = function (name, description, price, ingredients) {
   this.ingredients = ingredients
 }
 
+var Menu = function (name, Plate) {
+  this.name = name,
+  this.Plate = Plate
+}
+
+var Restaurant = function (name, description, Menu) {
+  this.name = name,
+  this.description = description,
+  this.Menu = Menu
+}
+
 var saladPlate = new Plate('saladPlate', 'vegetarian', 9.95, 'lettuce, tomatoes, cukes, dressing')
+var burgerPlate = new Plate('burgerPlate', 'meat', 12.95, 'lettuce, tomatoes, beef, cottage cheese')
+var medMenu = new Menu('lunch menu', saladPlate)
+var theMed = new Restaurant('theMed', 'mediterranean restaurant on walnut st', medMenu)
+
 
 Plate.prototype.stringify = function(){
     return this.name + " is " + this.description + ", costs " + this.price + ", and is made of " + this.ingredients
 }
+
+Menu.prototype.stringify = function(){
+    return this.name + " is " + this.Plate
+}
+
+Restaurant.prototype.stringify = function(){
+    return this.name + " is " + this.description + this.Menu
+}
+
 console.log(saladPlate.stringify())
+console.log(burgerPlate.stringify())
+console.log(theMed.stringify())
